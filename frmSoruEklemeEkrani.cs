@@ -65,14 +65,9 @@ namespace YazilimYapimi
             //komut.Parameters.AddWithValue("@b8", DsikkiPic.Text);
             komut.Parameters.AddWithValue("@c1", label12.Text);
             komut.ExecuteNonQuery();
-            baglanti.Close();
-            MessageBox.Show("Soru eklendi."); 
+
         }
 
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Sistem.frmGirisEkrani.Show();
-            this.Hide();
-        }
+
     }
 }
