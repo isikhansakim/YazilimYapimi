@@ -30,53 +30,90 @@ namespace YazilimYapimi
 
         private void btnGirisYap_Click(object sender, EventArgs e)
         {
+            baglanti.Open();
 
 
+            //veritabanındaki bilgileri alma
+            SqlCommand komut = new SqlCommand("SELECT * From Tbl_Kullanici where KullaniciAdi = @a1;", baglanti);
+            komut.Parameters.AddWithValue("@a1", txtKullaniciAdi.Text);
 
-            if (comboBox1.Text == "Öğrenci")
-            {
-                baglanti.Open();
+            //veritabanındaki verileri okuma
+            SqlDataReader reader = komut.ExecuteReader();
+            reader.Read();
 
-                SqlCommand komut = new SqlCommand("SELECT * From Tbl_Kullanici where KullaniciAdi = @a1;", baglanti);
-                komut.Parameters.AddWithValue("@a1", txtKullaniciAdi.Text);
+            //okudğumuz verileri programa kaydetme
+            Sistem.KulAd = reader[1].ToString();
+            Sistem.Sifre = reader[2].ToString();
 
+            reader.Close();
+            komut.ExecuteNonQuery();
 
+            //Öğrenci idsini alma
+            SqlCommand command = new SqlCommand("select * from Tbl_Kullanici join Tbl_Ogrenci on Tbl_Kullanici.Kullanici_id = Tbl_Ogrenci.Kullanici_id where Tbl_Kullanici.KullaniciAdi = @k1", baglanti);
+            command.Parameters.AddWithValue("@k1", txtKullaniciAdi.Text);
+            SqlDataReader reader1 = command.ExecuteReader();
 
-                SqlDataReader reader = komut.ExecuteReader();
-                reader.Read();
-
-
-                Sistem.KulAd = reader[1].ToString();
-                Sistem.Sifre = reader[2].ToString();
-
-
-                reader.Close();
-                komut.ExecuteNonQuery();
-
-                baglanti.Close();
-                if ((txtKullaniciAdi.Text == Sistem.KulAd) && (txtSifre.Text == Sistem.Sifre))
+            //Girdiğimiz kullanıcıya ait bir veri var mı
+            if (reader1.Read()) {
+                //Girdiğimiz kullanıcıya ait bir öğrenci id var mı
+                if (reader1[6].ToString() != null)
                 {
-                    Sistem.frmOgrenciEkrani = new frmOgrenciEkrani();
-                    Sistem.frmOgrenciEkrani.Show();
-                    this.Hide();
-                }
+                    reader1.Close();
 
-                else
-                {
-                    MessageBox.Show("Girdiğiniz Kullanıcı Adı veya Parola yanlış tülfen tekrar deneyiniz");
-                }
+                    //girilen şifre ile veritabanındaki şifrenin kontrolü
+                    if ((txtKullaniciAdi.Text == Sistem.KulAd) && (txtSifre.Text == Sistem.Sifre))
+                    {
+                        Sistem.frmOgrenciEkrani = new frmOgrenciEkrani();
+                        Sistem.frmOgrenciEkrani.Show();
+                        this.Hide();
+                    }
 
+                    else
+                    {
+                        MessageBox.Show("Girdiğiniz Kullanıcı Adı veya Parola yanlış tülfen tekrar deneyiniz");
+                    }
+                }                  
             }
-            else if(comboBox1.Text == "Sınav Sorumlusu")
+            reader1.Close();
+
+            //Sınav sorumlusu idsini alma
+            SqlCommand command1 = new SqlCommand("select * from Tbl_Kullanici join Tbl_SinavSorumlusu on Tbl_Kullanici.Kullanici_id = Tbl_SinavSorumlusu.Kullanici_id where Tbl_Kullanici.KullaniciAdi = @l1", baglanti);
+            command1.Parameters.AddWithValue("@l1", txtKullaniciAdi.Text);
+            SqlDataReader reader2 = command1.ExecuteReader();
+            
+            //girdiğimiz kullanıcıya ait bir veri var mı
+            if (reader2.Read()) { 
+                //girdiğimiz kullanıcıya ait bir sorumlu_id var mı
+                if (reader2[6].ToString() != null)
+                {
+                    reader2.Close();
+
+                    //girilen şifre ile veritabanındaki şifrenin kontrolü
+                    if ((txtKullaniciAdi.Text == Sistem.KulAd) && (txtSifre.Text == Sistem.Sifre))
+                    {
+                        Sistem.frmSoruEklemeEkrani = new frmSoruEklemeEkrani();
+                        Sistem.frmSoruEklemeEkrani.Show();
+                        this.Hide();
+                    }
+
+                    else
+                    {
+                        MessageBox.Show("Girdiğiniz Kullanıcı Adı veya Parola yanlış tülfen tekrar deneyiniz");
+                    }
+                }
+            }
+            baglanti.Close();
+
+            if ((txtKullaniciAdi.Text == "admin") && (txtSifre.Text == "admin"))
             {
 
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Sistem.frmSoruEklemeEkrani = new frmSoruEklemeEkrani();
-            Sistem.frmSoruEklemeEkrani.Show();
+            frmSifremiUnuttum frmSifremiUnuttum = new frmSifremiUnuttum();
+            frmSifremiUnuttum.Show();
         }
     }
 }
