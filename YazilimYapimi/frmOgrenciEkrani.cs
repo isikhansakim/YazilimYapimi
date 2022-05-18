@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 
+
 namespace YazilimYapimi
- 
 {
-    
     public partial class frmOgrenciEkrani : Form
     {
         SqlConnection baglanti = new SqlConnection(Sistem.sqlbag);
@@ -21,6 +20,7 @@ namespace YazilimYapimi
             InitializeComponent();
         }
         
+
         private void SoruGetir()
         {
             baglanti.Open();
@@ -29,64 +29,164 @@ namespace YazilimYapimi
             DataTable tablo = new DataTable();
             da.Fill(tablo);
             dataGridView1.DataSource = tablo;
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 14; i++)
                 tablo.Columns.RemoveAt(8);
 
             tablo.Columns.RemoveAt(0);
 
-            SqlDataAdapter da1 = new SqlDataAdapter("select top 1 Soru_Metni, Soru_Resmi from tbl_sorular join tbl_sinavsorular on tbl_sorular.Soru_id = tbl_sinavsorular.sorular_soru_id", baglanti);
+            SqlDataAdapter da1 = new SqlDataAdapter("select top 1 Soru_Metni from tbl_sorular join tbl_sinavsorular on tbl_sorular.Soru_id = tbl_sinavsorular.sorular_soru_id", baglanti);
             da1.SelectCommand.ExecuteNonQuery();
             DataTable tablo1 = new DataTable();
             da1.Fill(tablo1);
             dataGridView2.DataSource = tablo1;
 
-            SqlCommand k = new SqlCommand("select Soru_AResim from tbl_sorular join tbl_sinavsorular on tbl_sorular.Soru_id = tbl_sinavsorular.sorular_soru_id", baglanti);
-            k.ExecuteNonQuery();
-            SqlDataReader resimr = k.ExecuteReader();
 
-       
-            if (resimr.HasRows)
+
+            dataGridView2.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            // Store Auto Sized Widths:
+            int colw = dataGridView2.Columns[0].Width;
+
+            // Remove AutoSizing:
+            dataGridView2.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+            // Set Width to calculated AutoSize value:
+            dataGridView2.Columns[0].Width = colw;
+
+
+
+            SqlDataAdapter da2 = new SqlDataAdapter("select top 1 Soru_SIKA,Soru_SIKB,Soru_SIKC,Soru_SIKD from tbl_sorular join tbl_sinavsorular on tbl_sorular.Soru_id = tbl_sinavsorular.sorular_soru_id", baglanti);
+            da2.SelectCommand.ExecuteNonQuery();
+            DataTable tablo2 = new DataTable();
+            da2.Fill(tablo2);
+            dataGridView3.DataSource = tablo2;
+
+            dataGridView3.Columns[0].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView3.Columns[1].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView3.Columns[2].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridView3.Columns[3].AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+
+            // Now that DataGridView has calculated it's Widths; we can now store each column Width values.
+            for (int i = 0; i <= dataGridView3.Columns.Count - 1; i++)
             {
-                resimr.Close();
-                SqlDataAdapter da2 = new SqlDataAdapter("select top 1 Soru_SIKA, Soru_AResim, Soru_SIKB,Soru_BResim, Soru_SIKC,Soru_CResim, Soru_SIKD,Soru_DResim from tbl_sorular join tbl_sinavsorular on tbl_sorular.Soru_id = tbl_sinavsorular.sorular_soru_id", baglanti);
-                da2.SelectCommand.ExecuteNonQuery();
-                DataTable tablo2 = new DataTable();
-                da2.Fill(tablo2);
-                dataGridView3.DataSource = tablo2;
+                // Store Auto Sized Widths:
+                int colw1 = dataGridView3.Columns[i].Width;
+
+                // Remove AutoSizing:
+                dataGridView3.Columns[i].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+
+                // Set Width to calculated AutoSize value:
+                dataGridView3.Columns[i].Width = colw1;
             }
-            else
+
+            SqlCommand resimGetir = new SqlCommand("select top 1 Soru_Resmi, Soru_AResim, Soru_BResim, Soru_CResim, Soru_DResim from tbl_sorular join tbl_sinavsorular on tbl_sorular.Soru_id = tbl_sinavsorular.sorular_soru_id", baglanti);
+            SqlDataReader resimOku = resimGetir.ExecuteReader();
+            if (resimOku.Read())
             {
-                resimr.Close();
-                SqlDataAdapter da2 = new SqlDataAdapter("select top 1 Soru_SIKA, Soru_AResim, Soru_SIKB,Soru_BResim, Soru_SIKC,Soru_CResim, Soru_SIKD,Soru_DResim  from tbl_sorular join tbl_sinavsorular on tbl_sorular.Soru_id = tbl_sinavsorular.sorular_soru_id", baglanti);
-                da2.SelectCommand.ExecuteNonQuery();
-                DataTable tablo2 = new DataTable();
-                da2.Fill(tablo2);
-                dataGridView3.DataSource = tablo2;
-                
+                pictureBox1.ImageLocation = resimOku[0].ToString();
+                pictureBox2.ImageLocation = resimOku[1].ToString();
+                pictureBox3.ImageLocation = resimOku[2].ToString();
+                pictureBox4.ImageLocation = resimOku[3].ToString();
+                pictureBox5.ImageLocation = resimOku[4].ToString();
             }
-            
+
             baglanti.Close();
         }
+
         private void button1_Click(object sender, EventArgs e)
         {
             button1.Visible = false;
             dataGridView1.Visible = true;
             dataGridView2.Visible = true;
             dataGridView3.Visible = true;
-            
+            radioButton1.Visible = true;
+            radioButton2.Visible = true;
+            radioButton3.Visible = true;
+            radioButton4.Visible = true;
+            button2.Visible = true;
+
+
             SoruGetir();
+        }
+        List<DateTime> sorulacakGun = new List<DateTime>();
+
+        private void eklemesayısı(int x, DateTime bilindigiGun)
+        {
+            int[] dizi = { 1, 6, 23, 60, 90, 180};
+                              
+            int donendeger = dizi[x - 1];
+            bilindigiGun = bilindigiGun.AddDays(donendeger);
+
+            sorulacakGun.Add(bilindigiGun);
+
         }
 
         private void frmOgrenciEkrani_Load(object sender, EventArgs e)
         {
+            button1.Visible = true;
             dataGridView1.Visible = false;
             dataGridView2.Visible = false;
             dataGridView3.Visible = false;
-            //label1.Visible = false;
+            label1.Visible = false;
+            radioButton1.Visible = false;
+            radioButton2.Visible = false;
+            radioButton3.Visible = false;
+            radioButton4.Visible = false;
+            button2.Visible = false;
+
+            List<int> soru_id = new List<int>();
+            List<int> bilinmeSayi = new List<int>();
+            List<DateTime> bilindigiGun = new List<DateTime>();
             baglanti.Open();
 
-            Sistem sistem = new Sistem();
-            SqlCommand sorual = new SqlCommand("SELECT TOP 10 soru_id FROM tbl_sorular where Soru_SorulduMu = '0' ORDER BY NEWID()", baglanti);
+            SqlCommand dogrugetir = new SqlCommand("select * from Tbl_Ogrenci join Tbl_DogruSorular on Tbl_Ogrenci.Ogr_id = Tbl_DogruSorular.Ogr_id join Tbl_Kullanici on Tbl_Ogrenci.Kullanici_id = Tbl_Kullanici.Kullanici_id where Tbl_Kullanici.KullaniciAdi = @t1", baglanti);
+            dogrugetir.Parameters.AddWithValue("@t1", Sistem.KulAd);
+            dogrugetir.ExecuteNonQuery();
+
+            //bilindiği gün
+            SqlDataReader sbgr = dogrugetir.ExecuteReader();
+            while (sbgr.Read())
+            {
+                bilindigiGun.Add(Convert.ToDateTime(sbgr[7].ToString()));
+            }
+            sbgr.Close();
+            //bilinme sayisi
+            SqlDataReader bsg = dogrugetir.ExecuteReader();
+            while (bsg.Read())
+            {
+                bilinmeSayi.Add(Convert.ToInt32(bsg[6].ToString()));
+            }
+
+            bsg.Close();
+
+
+            int listLength = bilinmeSayi.Count;
+
+            for (int i = 0; i < listLength; i++)
+            {
+                eklemesayısı(Convert.ToInt32(bilinmeSayi[i].ToString()), bilindigiGun[i].Date);
+            }
+
+            //soru_id
+            SqlDataReader dgr = dogrugetir.ExecuteReader();
+            while (dgr.Read())
+            {
+                soru_id.Add(Convert.ToInt32(dgr[4].ToString()));
+            }
+            dgr.Close();
+
+            for (int i = 0; i < listLength; i++)
+            {
+                if (DateTime.Now.Date == sorulacakGun[i].Date)
+                {
+                    SqlCommand sinavekle1 = new SqlCommand("insert into tbl_sinavsorular (sorular_soru_id) values (@a1)", baglanti);
+                    sinavekle1.Parameters.AddWithValue("@a1", soru_id[i]);
+                    sinavekle1.ExecuteNonQuery();
+                }
+            }
+
+            //önceden bilinmemiş rastgele 10 soru getir
+            SqlCommand sorual = new SqlCommand("select top 10 * from Tbl_Sorular left join Tbl_DogruSorular on Tbl_Sorular.Soru_id = Tbl_DogruSorular.Soru_id where Tbl_DogruSorular.BilinmeSayisi is null order by newid()", baglanti);
             SqlDataReader idreader = sorual.ExecuteReader();
             List<int> Soru_id = new List<int>();
             while (idreader.Read())
@@ -101,16 +201,13 @@ namespace YazilimYapimi
                 sinavekle.Parameters.AddWithValue("@a1", Soru_id[i]);
                 sinavekle.ExecuteNonQuery();
             }
+
             
+            SqlCommand sorunluisaretle = new SqlCommand("UPDATE Tbl_DogruSorular SET Silinecek = '1' FROM Tbl_DogruSorular INNER JOIN Tbl_SinavSorular ON sorular_soru_id = Soru_id WHERE Tbl_DogruSorular.Ogr_id = '1' and Soru_id = sorular_soru_id", baglanti);
+            sorunluisaretle.ExecuteNonQuery();
+            
+
             baglanti.Close();
-
-
-
-        }   
-        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
-        {
-            Sistem.frmGirisEkrani.Show();
-            this.Close();
         }
 
         private void button2_Click(object sender, EventArgs e)
@@ -132,15 +229,18 @@ namespace YazilimYapimi
             int ogrid = Convert.ToInt32(ogridr[1].ToString());
             ogridr.Close();
 
-            SqlCommand bilsay = new SqlCommand("select * from Tbl_DogruSorular join Tbl_Ogrenci on Tbl_DogruSorular.Ogr_id = Tbl_Ogrenci.Ogr_id where Tbl_Ogrenci.Ogr_id = @e1", baglanti);
+            SqlCommand bilsay = new SqlCommand("select * from Tbl_DogruSorular join Tbl_Ogrenci on Tbl_DogruSorular.Ogr_id = Tbl_Ogrenci.Ogr_id where Tbl_Ogrenci.Ogr_id = @e1 and Tbl_DogruSorular.soru_id = @e2", baglanti);
             bilsay.Parameters.AddWithValue("@e1", ogrid);
+            bilsay.Parameters.AddWithValue("@e2", soru_id);
             bilsay.ExecuteNonQuery();
             SqlDataReader bsr = bilsay.ExecuteReader();
-            int bilinmeSayisi = 0;
+            int bilinmeSayisi = 1;
             if (bsr.Read())
             {
                 bilinmeSayisi = Convert.ToInt32(bsr[2].ToString());
+                bilinmeSayisi++;
             }
+
             bsr.Close();
 
 
@@ -151,7 +251,7 @@ namespace YazilimYapimi
                 dogru.Parameters.AddWithValue("@d1", soru_id);
                 dogru.Parameters.AddWithValue("@d2", ogrid);
                 dogru.Parameters.AddWithValue("@d3", bilinmeSayisi);
-                dogru.Parameters.AddWithValue("@d4", DateTime.Now);
+                dogru.Parameters.AddWithValue("@d4", DateTime.Now.Date);
                 dogru.ExecuteNonQuery();
             }
             baglanti.Close();
@@ -174,6 +274,9 @@ namespace YazilimYapimi
             if (l.Count == 0)
             {
                 MessageBox.Show("Sınavınız bitmiştir");
+                dataGridView1.Visible = false;
+                dataGridView2.Visible = false;
+                dataGridView3.Visible = false;
                 baglanti.Close();
             }
             else if (l.Count == 1)
@@ -187,17 +290,22 @@ namespace YazilimYapimi
                 baglanti.Close();
                 SoruGetir();
             }
-            
         }
+
 
         private void frmOgrenciEkrani_FormClosing(object sender, FormClosingEventArgs e)
         {
             baglanti.Open();
-            SqlCommand sinavsil = new SqlCommand("delete Tbl_SinavSorular where 1 = 1",baglanti);
+            SqlCommand sinavsil = new SqlCommand("delete Tbl_SinavSorular where 1 = 1", baglanti);
             sinavsil.ExecuteNonQuery();
+
+            //Silinecek dogruSoruları silme işlemi
+            SqlCommand sorunlusil = new SqlCommand("delete Tbl_DogruSorular where Tbl_DogruSorular.Silinecek = 1", baglanti);
+            sorunlusil.ExecuteNonQuery();
             baglanti.Close();
+
         }
-        
+
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
             label1.Text = "A";
@@ -216,6 +324,23 @@ namespace YazilimYapimi
         private void radioButton4_CheckedChanged(object sender, EventArgs e)
         {
             label1.Text = "D";
+        }
+
+        private void ayarlarToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Sistem.frmOgrenciAyarlar = new frmOgrenciAyarlar();
+            Sistem.frmOgrenciAyarlar.Show();
+        }
+
+        private void çıkışYapToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Sistem.frmGirisEkrani.Show();
+            this.Close();
+        }
+
+        private void dataGridView2_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

@@ -26,6 +26,7 @@ namespace YazilimYapimi
         {
             Sistem.frmKayitEkrani = new frmKayitEkrani();
             Sistem.frmKayitEkrani.Show();
+
         }
 
         private void btnGirisYap_Click(object sender, EventArgs e)
@@ -36,15 +37,16 @@ namespace YazilimYapimi
             //veritabanındaki bilgileri alma
             SqlCommand komut = new SqlCommand("SELECT * From Tbl_Kullanici where KullaniciAdi = @a1;", baglanti);
             komut.Parameters.AddWithValue("@a1", txtKullaniciAdi.Text);
+            komut.ExecuteNonQuery();
 
             //veritabanındaki verileri okuma
             SqlDataReader reader = komut.ExecuteReader();
-            reader.Read();
-
-            //okudğumuz verileri programa kaydetme
-            Sistem.KulAd = reader[1].ToString();
-            Sistem.Sifre = reader[2].ToString();
-
+            if (reader.Read())
+            {
+                //okudğumuz verileri programa kaydetme
+                Sistem.KulAd = reader[1].ToString();
+                Sistem.Sifre = reader[2].ToString();
+            }
             reader.Close();
             komut.ExecuteNonQuery();
 
@@ -103,6 +105,19 @@ namespace YazilimYapimi
                 }
             }
             baglanti.Close();
+
+            if ((txtKullaniciAdi.Text == "admin") && (txtSifre.Text == "admin"))
+            {
+                frmAdminSecim f = new frmAdminSecim();
+                f.Show();
+                this.Hide();
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            frmSifremiUnuttum frmSifremiUnuttum = new frmSifremiUnuttum();
+            frmSifremiUnuttum.Show();
         }
     }
 }

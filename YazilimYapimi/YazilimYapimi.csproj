@@ -52,11 +52,17 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="frmKayitTuruSecim.cs">
+    <Compile Include="frmAdminSecim.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="frmKayitTuruSecim.Designer.cs">
-      <DependentUpon>frmKayitTuruSecim.cs</DependentUpon>
+    <Compile Include="frmAdminSecim.Designer.cs">
+      <DependentUpon>frmAdminSecim.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmOgrenciAyarlar.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmOgrenciAyarlar.Designer.cs">
+      <DependentUpon>frmOgrenciAyarlar.cs</DependentUpon>
     </Compile>
     <Compile Include="frmOgrenciEkrani.cs">
       <SubType>Form</SubType>
@@ -69,6 +75,12 @@
     </Compile>
     <Compile Include="frmOgrenciKayit.Designer.cs">
       <DependentUpon>frmOgrenciKayit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSifremiUnuttum.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSifremiUnuttum.Designer.cs">
+      <DependentUpon>frmSifremiUnuttum.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSoruEklemeEkrani.cs">
       <SubType>Form</SubType>
@@ -83,14 +95,20 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmKayitTuruSecim.resx">
-      <DependentUpon>frmKayitTuruSecim.cs</DependentUpon>
+    <EmbeddedResource Include="frmAdminSecim.resx">
+      <DependentUpon>frmAdminSecim.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmOgrenciAyarlar.resx">
+      <DependentUpon>frmOgrenciAyarlar.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmOgrenciEkrani.resx">
       <DependentUpon>frmOgrenciEkrani.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmOgrenciKayit.resx">
       <DependentUpon>frmOgrenciKayit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSifremiUnuttum.resx">
+      <DependentUpon>frmSifremiUnuttum.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSoruEklemeEkrani.resx">
       <DependentUpon>frmSoruEklemeEkrani.cs</DependentUpon>

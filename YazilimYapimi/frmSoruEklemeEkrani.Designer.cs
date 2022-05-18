@@ -70,6 +70,11 @@ namespace YazilimYapimi
             this.button3 = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
+            this.lblSoruResim = new System.Windows.Forms.Label();
+            this.lblAResim = new System.Windows.Forms.Label();
+            this.lblBResim = new System.Windows.Forms.Label();
+            this.lblCResim = new System.Windows.Forms.Label();
+            this.lblDResim = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.AsikkiPic)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CsikkiPic)).BeginInit();
@@ -111,7 +116,7 @@ namespace YazilimYapimi
             this.KonuTxt.Location = new System.Drawing.Point(180, 72);
             this.KonuTxt.Name = "KonuTxt";
             this.KonuTxt.Size = new System.Drawing.Size(192, 32);
-            this.KonuTxt.TabIndex = 1;
+            this.KonuTxt.TabIndex = 2;
             // 
             // label3
             // 
@@ -129,7 +134,7 @@ namespace YazilimYapimi
             this.SoruNoTxt.Location = new System.Drawing.Point(180, 110);
             this.SoruNoTxt.Name = "SoruNoTxt";
             this.SoruNoTxt.Size = new System.Drawing.Size(192, 32);
-            this.SoruNoTxt.TabIndex = 1;
+            this.SoruNoTxt.TabIndex = 3;
             // 
             // label4
             // 
@@ -147,7 +152,7 @@ namespace YazilimYapimi
             this.SoruSinifiTxt.Location = new System.Drawing.Point(180, 148);
             this.SoruSinifiTxt.Name = "SoruSinifiTxt";
             this.SoruSinifiTxt.Size = new System.Drawing.Size(192, 32);
-            this.SoruSinifiTxt.TabIndex = 1;
+            this.SoruSinifiTxt.TabIndex = 4;
             // 
             // label5
             // 
@@ -165,7 +170,7 @@ namespace YazilimYapimi
             this.DersTxt.Location = new System.Drawing.Point(180, 186);
             this.DersTxt.Name = "DersTxt";
             this.DersTxt.Size = new System.Drawing.Size(192, 32);
-            this.DersTxt.TabIndex = 1;
+            this.DersTxt.TabIndex = 5;
             // 
             // label6
             // 
@@ -183,7 +188,7 @@ namespace YazilimYapimi
             this.UniteAdTxt.Location = new System.Drawing.Point(180, 224);
             this.UniteAdTxt.Name = "UniteAdTxt";
             this.UniteAdTxt.Size = new System.Drawing.Size(192, 32);
-            this.UniteAdTxt.TabIndex = 1;
+            this.UniteAdTxt.TabIndex = 6;
             // 
             // label7
             // 
@@ -201,14 +206,14 @@ namespace YazilimYapimi
             this.KonuAdiTxt.Location = new System.Drawing.Point(180, 262);
             this.KonuAdiTxt.Name = "KonuAdiTxt";
             this.KonuAdiTxt.Size = new System.Drawing.Size(192, 32);
-            this.KonuAdiTxt.TabIndex = 1;
+            this.KonuAdiTxt.TabIndex = 7;
             // 
             // richTextBox1
             // 
             this.richTextBox1.Location = new System.Drawing.Point(180, 300);
             this.richTextBox1.Name = "richTextBox1";
             this.richTextBox1.Size = new System.Drawing.Size(717, 224);
-            this.richTextBox1.TabIndex = 2;
+            this.richTextBox1.TabIndex = 8;
             this.richTextBox1.Text = "";
             // 
             // pictureBox1
@@ -216,6 +221,7 @@ namespace YazilimYapimi
             this.pictureBox1.Location = new System.Drawing.Point(524, 37);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(257, 219);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 3;
             this.pictureBox1.TabStop = false;
             // 
@@ -225,7 +231,7 @@ namespace YazilimYapimi
             this.AsikkiTxt.Location = new System.Drawing.Point(180, 551);
             this.AsikkiTxt.Name = "AsikkiTxt";
             this.AsikkiTxt.Size = new System.Drawing.Size(192, 32);
-            this.AsikkiTxt.TabIndex = 5;
+            this.AsikkiTxt.TabIndex = 9;
             // 
             // label8
             // 
@@ -253,7 +259,7 @@ namespace YazilimYapimi
             this.BsikkiTxt.Location = new System.Drawing.Point(705, 551);
             this.BsikkiTxt.Name = "BsikkiTxt";
             this.BsikkiTxt.Size = new System.Drawing.Size(192, 32);
-            this.BsikkiTxt.TabIndex = 5;
+            this.BsikkiTxt.TabIndex = 10;
             // 
             // label10
             // 
@@ -271,7 +277,7 @@ namespace YazilimYapimi
             this.CsikkiTxt.Location = new System.Drawing.Point(180, 670);
             this.CsikkiTxt.Name = "CsikkiTxt";
             this.CsikkiTxt.Size = new System.Drawing.Size(192, 32);
-            this.CsikkiTxt.TabIndex = 5;
+            this.CsikkiTxt.TabIndex = 11;
             // 
             // label11
             // 
@@ -289,13 +295,14 @@ namespace YazilimYapimi
             this.DsikkiTxt.Location = new System.Drawing.Point(705, 673);
             this.DsikkiTxt.Name = "DsikkiTxt";
             this.DsikkiTxt.Size = new System.Drawing.Size(192, 32);
-            this.DsikkiTxt.TabIndex = 5;
+            this.DsikkiTxt.TabIndex = 12;
             // 
             // AsikkiPic
             // 
             this.AsikkiPic.Location = new System.Drawing.Point(407, 551);
             this.AsikkiPic.Name = "AsikkiPic";
             this.AsikkiPic.Size = new System.Drawing.Size(100, 85);
+            this.AsikkiPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.AsikkiPic.TabIndex = 6;
             this.AsikkiPic.TabStop = false;
             // 
@@ -304,6 +311,7 @@ namespace YazilimYapimi
             this.CsikkiPic.Location = new System.Drawing.Point(407, 677);
             this.CsikkiPic.Name = "CsikkiPic";
             this.CsikkiPic.Size = new System.Drawing.Size(100, 81);
+            this.CsikkiPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.CsikkiPic.TabIndex = 6;
             this.CsikkiPic.TabStop = false;
             // 
@@ -312,6 +320,7 @@ namespace YazilimYapimi
             this.DsikkiPic.Location = new System.Drawing.Point(924, 677);
             this.DsikkiPic.Name = "DsikkiPic";
             this.DsikkiPic.Size = new System.Drawing.Size(100, 81);
+            this.DsikkiPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.DsikkiPic.TabIndex = 6;
             this.DsikkiPic.TabStop = false;
             // 
@@ -320,6 +329,7 @@ namespace YazilimYapimi
             this.BsikkiPic.Location = new System.Drawing.Point(924, 551);
             this.BsikkiPic.Name = "BsikkiPic";
             this.BsikkiPic.Size = new System.Drawing.Size(100, 85);
+            this.BsikkiPic.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.BsikkiPic.TabIndex = 6;
             this.BsikkiPic.TabStop = false;
             // 
@@ -331,6 +341,7 @@ namespace YazilimYapimi
             this.button1.TabIndex = 7;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button5
             // 
@@ -342,16 +353,17 @@ namespace YazilimYapimi
             this.button5.TabIndex = 7;
             this.button5.Text = "...";
             this.button5.UseVisualStyleBackColor = true;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
             this.radioButton1.Location = new System.Drawing.Point(513, 584);
             this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(85, 17);
+            this.radioButton1.Size = new System.Drawing.Size(58, 17);
             this.radioButton1.TabIndex = 8;
             this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
+            this.radioButton1.Text = "A Şıkkı";
             this.radioButton1.UseVisualStyleBackColor = true;
             // 
             // radioButton2
@@ -359,10 +371,10 @@ namespace YazilimYapimi
             this.radioButton2.AutoSize = true;
             this.radioButton2.Location = new System.Drawing.Point(513, 710);
             this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(85, 17);
+            this.radioButton2.Size = new System.Drawing.Size(58, 17);
             this.radioButton2.TabIndex = 8;
             this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton1";
+            this.radioButton2.Text = "C Şıkkı";
             this.radioButton2.UseVisualStyleBackColor = true;
             // 
             // radioButton3
@@ -370,10 +382,10 @@ namespace YazilimYapimi
             this.radioButton3.AutoSize = true;
             this.radioButton3.Location = new System.Drawing.Point(1030, 584);
             this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(85, 17);
+            this.radioButton3.Size = new System.Drawing.Size(58, 17);
             this.radioButton3.TabIndex = 8;
             this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "radioButton1";
+            this.radioButton3.Text = "B Şıkkı";
             this.radioButton3.UseVisualStyleBackColor = true;
             // 
             // radioButton4
@@ -381,19 +393,19 @@ namespace YazilimYapimi
             this.radioButton4.AutoSize = true;
             this.radioButton4.Location = new System.Drawing.Point(1030, 710);
             this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(85, 17);
+            this.radioButton4.Size = new System.Drawing.Size(59, 17);
             this.radioButton4.TabIndex = 8;
             this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "radioButton1";
+            this.radioButton4.Text = "D Şıkkı";
             this.radioButton4.UseVisualStyleBackColor = true;
             // 
             // button6
             // 
-            this.button6.Location = new System.Drawing.Point(948, 50);
+            this.button6.Location = new System.Drawing.Point(949, 34);
             this.button6.Name = "button6";
-            this.button6.Size = new System.Drawing.Size(149, 81);
+            this.button6.Size = new System.Drawing.Size(166, 43);
             this.button6.TabIndex = 9;
-            this.button6.Text = "button6";
+            this.button6.Text = "Kaydet";
             this.button6.UseVisualStyleBackColor = true;
             this.button6.Click += new System.EventHandler(this.button6_Click);
             // 
@@ -412,21 +424,23 @@ namespace YazilimYapimi
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(513, 677);
+            this.button2.Location = new System.Drawing.Point(1030, 551);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(68, 23);
             this.button2.TabIndex = 11;
             this.button2.Text = "button2";
             this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // button3
             // 
-            this.button3.Location = new System.Drawing.Point(1029, 551);
+            this.button3.Location = new System.Drawing.Point(513, 677);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(68, 23);
             this.button3.TabIndex = 12;
             this.button3.Text = "button3";
             this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
             // 
             // button4
             // 
@@ -436,23 +450,79 @@ namespace YazilimYapimi
             this.button4.TabIndex = 13;
             this.button4.Text = "button4";
             this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
             // linkLabel1
             // 
             this.linkLabel1.AutoSize = true;
             this.linkLabel1.Location = new System.Drawing.Point(1085, 9);
             this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(55, 13);
+            this.linkLabel1.Size = new System.Drawing.Size(49, 13);
             this.linkLabel1.TabIndex = 14;
             this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
+            this.linkLabel1.Text = "Geri Dön";
             this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
+            // 
+            // lblSoruResim
+            // 
+            this.lblSoruResim.AutoSize = true;
+            this.lblSoruResim.Location = new System.Drawing.Point(807, 204);
+            this.lblSoruResim.Name = "lblSoruResim";
+            this.lblSoruResim.Size = new System.Drawing.Size(41, 13);
+            this.lblSoruResim.TabIndex = 15;
+            this.lblSoruResim.Text = "label13";
+            this.lblSoruResim.Visible = false;
+            // 
+            // lblAResim
+            // 
+            this.lblAResim.AutoSize = true;
+            this.lblAResim.Location = new System.Drawing.Point(331, 586);
+            this.lblAResim.Name = "lblAResim";
+            this.lblAResim.Size = new System.Drawing.Size(41, 13);
+            this.lblAResim.TabIndex = 16;
+            this.lblAResim.Text = "label13";
+            this.lblAResim.Visible = false;
+            // 
+            // lblBResim
+            // 
+            this.lblBResim.AutoSize = true;
+            this.lblBResim.Location = new System.Drawing.Point(856, 586);
+            this.lblBResim.Name = "lblBResim";
+            this.lblBResim.Size = new System.Drawing.Size(41, 13);
+            this.lblBResim.TabIndex = 17;
+            this.lblBResim.Text = "label13";
+            this.lblBResim.Visible = false;
+            // 
+            // lblCResim
+            // 
+            this.lblCResim.AutoSize = true;
+            this.lblCResim.Location = new System.Drawing.Point(331, 705);
+            this.lblCResim.Name = "lblCResim";
+            this.lblCResim.Size = new System.Drawing.Size(41, 13);
+            this.lblCResim.TabIndex = 18;
+            this.lblCResim.Text = "label13";
+            this.lblCResim.Visible = false;
+            // 
+            // lblDResim
+            // 
+            this.lblDResim.AutoSize = true;
+            this.lblDResim.Location = new System.Drawing.Point(856, 708);
+            this.lblDResim.Name = "lblDResim";
+            this.lblDResim.Size = new System.Drawing.Size(41, 13);
+            this.lblDResim.TabIndex = 19;
+            this.lblDResim.Text = "label13";
+            this.lblDResim.Visible = false;
             // 
             // frmSoruEklemeEkrani
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1152, 787);
+            this.Controls.Add(this.lblDResim);
+            this.Controls.Add(this.lblCResim);
+            this.Controls.Add(this.lblBResim);
+            this.Controls.Add(this.lblAResim);
+            this.Controls.Add(this.lblSoruResim);
             this.Controls.Add(this.linkLabel1);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.button3);
@@ -548,5 +618,10 @@ namespace YazilimYapimi
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Label lblSoruResim;
+        private System.Windows.Forms.Label lblAResim;
+        private System.Windows.Forms.Label lblBResim;
+        private System.Windows.Forms.Label lblCResim;
+        private System.Windows.Forms.Label lblDResim;
     }
 }

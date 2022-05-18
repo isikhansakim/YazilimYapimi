@@ -65,6 +65,9 @@ namespace YazilimYapimi
                 komut3.ExecuteNonQuery();
                 baglanti.Close();
             }
+
+            MessageBox.Show("Kaydınız başarıyla gerçekleşmiştir.");
+            this.Hide();
         }
     }
 }
